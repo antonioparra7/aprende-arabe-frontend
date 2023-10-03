@@ -1,0 +1,35 @@
+<div class="sidebar">
+    <a routerLink="/dashboard" class="logo">
+        <i class='bx bxs-pyramid'></i>
+        <div class="logo-name"><span>Aprende</span>Arabe</div>
+    </a>
+    <ul class="side-menu">
+        <li><a routerLink="/dashboard/statistics"><i class="bx bxs-dashboard"></i>Estadísticas</a></li>
+        <li><a routerLink="/dashboard/levels"><i class="bx bxs-up-arrow-alt"></i>Niveles</a></li>
+        <li><a routerLink="/dashboard/themes"><i class="bx bxs-dog"></i>Temáticas</a></li>
+        <li><a routerLink="/dashboard/lessons"><i class="bx bxs-chalkboard"></i>Lecciones</a></li>
+        <li><a routerLink="/dashboard/tests"><i class="bx bxs-pencil"></i>Tests</a></li>
+        <li><a routerLink="/dashboard/translator"><i class="bx bxs-pencil"></i>Traductor</a></li>
+        <li><a routerLink="/dashboard/tutorials"><i class="bx bxs-mouse-alt"></i>Tutoriales</a></li>
+        <li><a routerLink="/dashboard/contacts"><i class="bx bxs-contact"></i>Contactos</a></li>
+        <li><a routerLink="/dashboard/settings"><i class="bx bxs-cog"></i>Ajustes</a></li>
+    </ul>
+    <ul class="side-menu">
+        <li>
+            <a href="#" class="logout">
+                <i class='bx bx-log-out-circle'></i>
+                Cerrar sesión
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="content">
+    <nav>
+        <i class="bx bx-menu"></i>
+        <a href="#" class="profile"><img src="../../assets/img/profile-default.png"/></a>
+        <span>Profile Name</span>
+    </nav>
+    <div class="container">
+        <router-outlet></router-outlet>
+    </div>
+</div>
