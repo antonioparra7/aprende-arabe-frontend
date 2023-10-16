@@ -8,12 +8,14 @@
                 <mat-form-field class="example-full-width">
                     <mat-label>Nombre</mat-label>
                     <input matInput placeholder="Nombre" formControlName="firstName">
+                    <mat-error *ngIf="form.get('firstName')?.invalid">{{firstNameError()}}</mat-error>
                 </mat-form-field>
             </div>
             <div class="col-md-6">
                 <mat-form-field class="example-full-width">
-                    <mat-label>Apellido</mat-label>
-                    <input matInput placeholder="Apellido" formControlName="lastName">
+                    <mat-label>Apellidos</mat-label>
+                    <input matInput placeholder="Apellidos" formControlName="lastName">
+                    <mat-error *ngIf="form.get('lastName')?.invalid">{{lastNameError()}}</mat-error>
                 </mat-form-field>
             </div>
         </div>
@@ -24,6 +26,7 @@
                     <input matInput [matDatepicker]="picker" name="birthdate" formControlName="birthdate">
                     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
+                    <mat-error *ngIf="form.get('birthdate')?.invalid">{{birthdateError()}}</mat-error>
                 </mat-form-field>
             </div>
             <div class="col-md-6">
@@ -36,6 +39,7 @@
                             <span>{{ country.name }}</span>
                         </mat-option>
                     </mat-select>
+                    <mat-error *ngIf="form.get('countryId')?.invalid">{{countryError()}}</mat-error>
                 </mat-form-field>
             </div>
         </div>
@@ -44,20 +48,25 @@
                 <mat-form-field class="example-full-width">
                     <mat-label>Email</mat-label>
                     <input matInput placeholder="Email" formControlName="email">
+                    <mat-error *ngIf="form.get('email')?.invalid">{{emailError()}}</mat-error>
                 </mat-form-field>
             </div>
             <div class="col-md-6">
-                <mat-form-field class="example-full-width">
+                <mat-form-field class="example-full-width" hintLabel="Max 9 números">
                     <mat-label>Teléfono</mat-label>
-                    <input matInput placeholder="Telefono" formControlName="phone">
+                    <input matInput #phone maxlength="9" placeholder="Telefono" formControlName="phone">
+                    <mat-hint align="end">{{phone.value.length}}/9</mat-hint>
+                    <mat-error *ngIf="form.get('phone')?.invalid">{{phoneError()}}</mat-error>
                 </mat-form-field>
             </div>
         </div>
         <div class="row mb-1">
             <div class="col-md-6">
-                <mat-form-field class="example-full-width">
+                <mat-form-field class="example-full-width" hintLabel="Max 15 carácteres">
                     <mat-label>Nombre de usuario</mat-label>
-                    <input matInput placeholder="Nombre de usuario" formControlName="username">
+                    <input #username maxlength="15" matInput placeholder="Nombre de usuario" formControlName="username">
+                    <mat-hint align="end">{{username.value.length}}/15</mat-hint>
+                    <mat-error *ngIf="form.get('username')?.invalid">{{usernameError()}}</mat-error>
                 </mat-form-field>
             </div>
             <div class="col-md-6">
@@ -68,6 +77,7 @@
                         [attr.aria-pressed]="hide1">
                         <mat-icon>{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </a>
+                    <mat-error *ngIf="form.get('password')?.invalid">{{passwordError()}}</mat-error>
                 </mat-form-field>
             </div>
         </div>
@@ -80,6 +90,7 @@
                         [attr.aria-pressed]="hide2">
                         <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </a>
+                    <mat-error *ngIf="form.get('passwordRepeat')?.invalid">{{passwordRepeatError()}}</mat-error>
                 </mat-form-field>
             </div>
             <div class="col-md-6">

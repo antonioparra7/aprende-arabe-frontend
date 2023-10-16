@@ -1,1 +1,7 @@
-<p>levels works!</p>
+<div class="container">
+    <div class="row">
+        <div *ngFor="let level of levels" class="col-md-4 col-sm-6 col-xs-12 d-flex justify-content-center">
+          <img *ngIf="level.image" [src]="getImageSrc(level.image)" alt="{{ level.name }}" class="img-fluid" />
+        </div>
+      </div>
+</div>

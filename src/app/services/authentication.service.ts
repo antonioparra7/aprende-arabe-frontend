@@ -14,11 +14,9 @@ export class AuthenticationService {
   constructor(private http:HttpClient) { }
 
   register(request:any):Observable<any>{
-    console.log('FUNCION SERVICIO');
     return this.http.post(this.url + "/register", request, { headers: this.headers, responseType: 'text' }).pipe(
       map((response: string) => {
         const jsonResponse = JSON.parse(response);
-        console.log(jsonResponse.token);
         return jsonResponse.token;
       }),
       catchError((error) => {

@@ -1,10 +1,37 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit{
+ constructor(){}
 
+ ngOnInit(): void {
+  const sideLinks = document.querySelectorAll('.sidebar .side-menu li a:not(.logout)');
+  sideLinks.forEach(item => {
+      const li = item.parentElement;
+      item.addEventListener('click',()=> {
+          sideLinks.forEach(i=> {
+              i.parentElement?.classList.remove('active');
+          });
+          li?.classList.add('active');
+      });
+  });
+  const menuBar = document.querySelector('.content nav .bx.bx-menu');
+  const sideBar = document.querySelector('.sidebar');
+  menuBar?.addEventListener('click', () => {
+    sideBar?.classList.toggle('close');
+  });
+
+  window.addEventListener('resize',() => {
+    if(window.innerWidth<768){
+      sideBar?.classList.add('close');
+    }
+    else {
+      sideBar?.classList.remove('close');
+    }
+  });
+ }
 }

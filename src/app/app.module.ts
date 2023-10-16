@@ -34,6 +34,7 @@ import { ContactsComponent } from './dashboard/contacts/contacts.component';
 import { TutorialsComponent } from './dashboard/tutorials/tutorials.component';
 import { TestsComponent } from './dashboard/tests/tests.component';
 import { TranslatorComponent } from './dashboard/translator/translator.component';
+import { LevelsModule } from './dashboard/levels/levels.module';
 
 const routes: Routes = [
   {path:'',redirectTo:'/home',pathMatch:'full'},
@@ -45,6 +46,7 @@ const routes: Routes = [
   {path:'dashboard',component:DashboardComponent,
     children: [
       {path:'',component:StatisticsComponent},
+      {path:'statistics',component:StatisticsComponent},
       {path:'levels',component:LevelsComponent},
       {path:'themes',component:ThemesComponent},
       {path:'lessons',component:LessonsComponent},
@@ -71,6 +73,7 @@ const routes: Routes = [
     TranslatorComponent
   ],
   imports: [
+    LevelsModule,
     BrowserModule,
     BrowserAnimationsModule,
     CommonModule,
