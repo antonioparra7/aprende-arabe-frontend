@@ -1,29 +1,31 @@
 <div class="container d-flex justify-content-center">
-<form>
-    <div class="row mt-4">
-        <h2>Inicia sesión en AprendeArabe</h2>
-    </div>
-    <div class="row mt-3">
-        <mat-form-field class="example-full-width">
-            <mat-label>Nombre de usuario</mat-label>
-            <input matInput placeholder="Nombre de usuario">
-        </mat-form-field>
-    </div>
-    <div class="row mt-3">
-        <mat-form-field>
-            <mat-label>Contraseña</mat-label>
-            <input matInput [type]="hide ? 'password' : 'text'">
-            <a mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                [attr.aria-pressed]="hide">
-                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </a>
-        </mat-form-field>
-    </div>
-    <div class="row mt-1">
-        <a class="d-flex justify-content-center" routerLink="/restore-password">¿Has olvidado tu contraseña?</a>
-    </div>
-    <div class="row mt-4 d-flex justify-content-center">
-        <button mat-flat-button color="primary" type="submit">Iniciar sesión</button>
-    </div>
-</form>
+    <form [formGroup]="form" (ngSubmit)="login()">
+        <div class="row mt-4">
+            <h2>Inicia sesión en AprendeArabe</h2>
+        </div>
+        <div class="row mt-3">
+            <mat-form-field class="example-full-width">
+                <mat-label>Nombre de usuario</mat-label>
+                <input matInput placeholder="Nombre de usuario" formControlName="username">
+                <mat-error *ngIf="form.get('username')?.invalid">{{usernameError()}}</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="row mt-3">
+            <mat-form-field>
+                <mat-label>Contraseña</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                <a mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </a>
+                <mat-error *ngIf="form.get('password')?.invalid">{{passwordError()}}</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="row mt-1">
+            <a class="d-flex justify-content-center" routerLink="/restore-password">¿Has olvidado tu contraseña?</a>
+        </div>
+        <div class="row mt-4 d-flex justify-content-center">
+            <button mat-flat-button color="primary" type="submit" [disabled]="form.invalid">Iniciar sesión</button>
+        </div>
+    </form>
 </div>

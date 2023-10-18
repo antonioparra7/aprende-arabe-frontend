@@ -3,12 +3,11 @@ import { CountryService } from '../services/country.service';
 import { Country } from '../entities/country';
 import { AppComponent } from '../app.component';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, FormControl, Validators, AbstractControlOptions } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControlOptions } from '@angular/forms';
 import { DatePipe } from '@angular/common';
-import { Observable, catchError, tap } from 'rxjs';
+import { catchError, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { AuthenticationService } from '../services/authentication.service';
-import { CustomValidators } from '../utils/custom-validators';
 import { UserService } from '../services/user.service';
 import Swal from 'sweetalert2';
 
@@ -18,7 +17,6 @@ import Swal from 'sweetalert2';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  isLogged: boolean;
   isValid:boolean;
   hide1 = true;
   hide2 = true;
@@ -28,17 +26,16 @@ export class RegisterComponent {
 
   constructor(private countryService:CountryService, private userService:UserService,
               private authenticationService:AuthenticationService,
-              private appComponent: AppComponent, private _router:Router, private fb:FormBuilder, 
-              private datePipe: DatePipe,private http:HttpClient){
-    //this.isLogged = appComponent.isLogged;
+              private _router:Router, private fb:FormBuilder, 
+              private datePipe: DatePipe, private http:HttpClient){
     this.form = this.fb.group(
       {
-        firstName: ['', Validators.required],
-        lastName: ['', Validators.required],
+        firstName: ['', [Validators.required,Validators.minLength(3),Validators.maxLength(25)]],
+        lastName: ['', [Validators.required,Validators.minLength(3),Validators.maxLength(35)]],
         email: ['', [Validators.email, Validators.required]],
         birthdate: ['', Validators.required],
-        phone: ['', [Validators.required,Validators.minLength(9),Validators.pattern("^[0-9]*$")]],
-        username: ['', [Validators.required, Validators.minLength(4)]],
+        phone: ['', [Validators.required,Validators.minLength(9),Validators.maxLength(9),Validators.pattern("^[0-9]*$")]],
+        username: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(15)]],
         password: ['', Validators.required],
         passwordRepeat: ['', Validators.required],
         isTeacher: [false],

@@ -1,6 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, map, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, map, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +10,8 @@ export class AuthenticationService {
   private headers = new HttpHeaders({
     'Content-Type': 'application/json'
   });
+  private isLoggedSubject = new BehaviorSubject<boolean>(false);
+  isLogged$ = this.isLoggedSubject.asObservable();
   
   constructor(private http:HttpClient) { }
 
@@ -20,9 +22,24 @@ export class AuthenticationService {
         return jsonResponse.token;
       }),
       catchError((error) => {
-        console.error('Error al enviar la solicitud POST:', error);
-        return throwError(() => new Error('Error al registrar al usuario'));
+        return throwError(() => new Error(error));
       })
     );
+  }
+
+  authenticate(request:any):Observable<any>{
+    return this.http.post(this.url + "/authenticate", request, {headers: this.headers, responseType: 'text' }).pipe(
+      map((response: string) => {
+        const jsonResponse = JSON.parse(response);
+        return jsonResponse.token;
+      }),
+      catchError((error:HttpErrorResponse) => {
+        return throwError(()=>error);
+      })
+    );
+  }
+
+  setIsLogged(isLogged: boolean): void {
+    this.isLoggedSubject.next(isLogged);
   }
 }
