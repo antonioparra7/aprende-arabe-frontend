@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../entities/user';
 import { Observable, catchError, map, of, tap, throwError } from 'rxjs';
@@ -28,6 +28,22 @@ export class UserService {
       map(user => true), 
       catchError(error => {
           return of(false);
+      })
+    );
+  }
+
+  getLevelId(id: number):Observable<number>{
+    return this.http.get<number>(`${this.url}/${id}`).pipe(
+      catchError((error:HttpErrorResponse) => {
+        return throwError(()=>error);
+      })
+    );
+  }
+
+  updateLevelUser(request: any, userId: number): Observable<User> {
+    return this.http.put<User>(`${this.url}/${userId}`, request).pipe(
+      catchError((error:HttpErrorResponse) => {
+        return throwError(()=>error);
       })
     );
   }

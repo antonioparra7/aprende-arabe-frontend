@@ -1,34 +1,43 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Level } from '../entities/level';
 import { Observable, catchError, throwError } from 'rxjs';
+import { Theme } from '../entities/theme';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LevelService {
-  private url:string = "http://localhost:8080/api/v1/levels";
+export class ThemeService {
+  private url:string = "http://localhost:8080/api/v1/themes";
   constructor(private http: HttpClient) { }
-  getLevels(): Observable<Level[]> {
-    return this.http.get<Level[]>(this.url).pipe(
+  getThemes(): Observable<Theme[]> {
+    return this.http.get<Theme[]>(this.url).pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(() => error);
       })
     );
   }
 
-  getLevelById(id: number): Observable<Level> {
-    return this.http.get<Level>(`${this.url}/${id}`).pipe(
+  getThemesByLevelId(id: number): Observable<Theme[]> {
+    return this.http.get<Theme[]>(`${this.url}/levelId/${id}`).pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(() => error);
       })
     );
   }
 
-  createLevel(name: string, image: File): Observable<string> {
+  getThemeById(id: number): Observable<Theme> {
+    return this.http.get<Theme>(`${this.url}/${id}`).pipe(
+      catchError((error: HttpErrorResponse) => {
+        return throwError(() => error);
+      })
+    );
+  }
+
+  createTheme(name: string, image: File, levelId: number): Observable<string> {
     const body = {
       name: name,
-      image: image
+      image: image,
+      levelId: levelId
     };
 
     return this.http.post<string>(this.url, body).pipe(
@@ -38,7 +47,7 @@ export class LevelService {
     );
   }
 
-  deleteLevel(id: number): Observable<string> {
+  deleteTheme(id: number): Observable<string> {
     return this.http.delete<string>(`${this.url}/${id}`).pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(() => error);

@@ -1,34 +1,34 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Level } from '../entities/level';
 import { Observable, catchError, throwError } from 'rxjs';
+import { Lesson } from '../entities/lesson';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LevelService {
-  private url:string = "http://localhost:8080/api/v1/levels";
+export class LessonService {
+  private url:string = "http://localhost:8080/api/v1/lessons";
   constructor(private http: HttpClient) { }
-  getLevels(): Observable<Level[]> {
-    return this.http.get<Level[]>(this.url).pipe(
+  getLessons(): Observable<Lesson[]> {
+    return this.http.get<Lesson[]>(this.url).pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(() => error);
       })
     );
   }
 
-  getLevelById(id: number): Observable<Level> {
-    return this.http.get<Level>(`${this.url}/${id}`).pipe(
+  getLessonById(id: number): Observable<Lesson> {
+    return this.http.get<Lesson>(`${this.url}/${id}`).pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(() => error);
       })
     );
   }
 
-  createLevel(name: string, image: File): Observable<string> {
+  createLesson(name: string, themeId: number): Observable<string> {
     const body = {
       name: name,
-      image: image
+      themeId: themeId
     };
 
     return this.http.post<string>(this.url, body).pipe(
@@ -38,7 +38,7 @@ export class LevelService {
     );
   }
 
-  deleteLevel(id: number): Observable<string> {
+  deleteLesson(id: number): Observable<string> {
     return this.http.delete<string>(`${this.url}/${id}`).pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(() => error);

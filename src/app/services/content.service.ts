@@ -1,34 +1,36 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Level } from '../entities/level';
 import { Observable, catchError, throwError } from 'rxjs';
+import { Content } from '../entities/content';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LevelService {
-  private url:string = "http://localhost:8080/api/v1/levels";
+export class ContentService {
+  private url:string = "http://localhost:8080/api/v1/contents";
   constructor(private http: HttpClient) { }
-  getLevels(): Observable<Level[]> {
-    return this.http.get<Level[]>(this.url).pipe(
+  getContents(): Observable<Content[]> {
+    return this.http.get<Content[]>(this.url).pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(() => error);
       })
     );
   }
 
-  getLevelById(id: number): Observable<Level> {
-    return this.http.get<Level>(`${this.url}/${id}`).pipe(
+  getContentById(id: number): Observable<Content> {
+    return this.http.get<Content>(`${this.url}/${id}`).pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(() => error);
       })
     );
   }
 
-  createLevel(name: string, image: File): Observable<string> {
+  createContent(word: string, wordTranslate: string, image: File, lessonId: number): Observable<string> {
     const body = {
-      name: name,
-      image: image
+      word: word,
+      wordTranslate: wordTranslate,
+      image: image,
+      lessonId: lessonId
     };
 
     return this.http.post<string>(this.url, body).pipe(
@@ -38,7 +40,7 @@ export class LevelService {
     );
   }
 
-  deleteLevel(id: number): Observable<string> {
+  deleteContent(id: number): Observable<string> {
     return this.http.delete<string>(`${this.url}/${id}`).pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(() => error);

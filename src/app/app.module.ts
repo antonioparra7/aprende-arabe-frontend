@@ -35,6 +35,12 @@ import { TutorialsComponent } from './dashboard/tutorials/tutorials.component';
 import { TestsComponent } from './dashboard/tests/tests.component';
 import { TranslatorComponent } from './dashboard/translator/translator.component';
 import { LevelsModule } from './dashboard/levels/levels.module';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { ThemesModule } from './dashboard/themes/themes.module';
+import { LessonsModule } from './dashboard/lessons/lessons.module';
+import { LessonComponent } from './dashboard/lesson/lesson.component';
+import { TestComponent } from './dashboard/test/test.component';
+import { TutorialComponent } from './dashboard/tutorial/tutorial.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'/home',pathMatch:'full'},
@@ -49,10 +55,13 @@ const routes: Routes = [
       {path:'statistics',component:StatisticsComponent},
       {path:'levels',component:LevelsComponent},
       {path:'themes',component:ThemesComponent},
-      {path:'lessons',component:LessonsComponent},
-      {path:'tests',component:TestsComponent},
+      {path:'lessons/:themeId',component:LessonsComponent},
+      {path:'lesson/:lessonId',component:LessonComponent},
+      {path:'tests/:lessonId',component:TestsComponent},
+      {path:'test/:testId',component:TestComponent},
       {path:'translator',component:TranslatorComponent},
       {path:'tutorials',component:TutorialsComponent},
+      {path:'tutorials/:tutorialId',component:TutorialComponent},
       {path:'contacts',component:ContactsComponent},
       {path:'settings',component:SettingsComponent}
   ]}
@@ -74,6 +83,8 @@ const routes: Routes = [
   ],
   imports: [
     LevelsModule,
+    ThemesModule,
+    LessonsModule,
     BrowserModule,
     BrowserAnimationsModule,
     CommonModule,
