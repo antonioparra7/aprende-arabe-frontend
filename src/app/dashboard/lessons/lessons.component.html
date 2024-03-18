@@ -1,6 +1,6 @@
-<div class="container mt-4">
-  <h1>Lecciones de la temática "{{ theme.name }}"</h1>
-  <mat-table [dataSource]="lessons" class="mat-elevation-z8">
+<div class="container mt-4" *ngIf="theme && lessonsTableReady">
+  <h1>Lecciones de la temática {{ theme.name }}</h1>
+  <mat-table [dataSource]="lessonsTable" class="mat-elevation-z8">
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef> Número </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
@@ -8,22 +8,32 @@
 
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+      <mat-cell *matCellDef="let element"><a href="/dashboard/lesson/{{element.id}}">{{element.name}}</a></mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="rating-media">
+    <ng-container matColumnDef="ratings">
+      <mat-header-cell *matHeaderCellDef> Valoraciones </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.ratings}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="ratingMedia">
       <mat-header-cell *matHeaderCellDef> Valoración media </mat-header-cell>
-      <mat-cell *matCellDef="let element"> 0 </mat-cell>
-    </ng-container>
-  
-    <ng-container matColumnDef="createAt">
-      <mat-header-cell *matHeaderCellDef> Fecha realización </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.createAt}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.ratingMedia}} <i class="bx bxs-star"></i></mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="rating">
+    <ng-container matColumnDef="ratingUser">
       <mat-header-cell *matHeaderCellDef> Tu valoración </mat-header-cell>
-      <mat-cell *matCellDef="let element"> 0 </mat-cell>
+      <mat-cell *matCellDef="let element"> 
+        <ng-container *ngIf="element.ratingUser === null">
+          <button mat-raised-button color="primary">Valorar</button>
+        </ng-container>
+        <ng-container *ngIf="element.ratingUser !== null">{{ element.ratingUser }} <i class="bx bxs-star"></i></ng-container>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="ratingUserDate">
+      <mat-header-cell *matHeaderCellDef> Fecha valoración </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.ratingUserDate}} </mat-cell>
     </ng-container>
   
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

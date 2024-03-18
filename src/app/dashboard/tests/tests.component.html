@@ -1,1 +1,42 @@
-<p>tests works!</p>
+<div class="container mt-4" *ngIf="testsTableReady">
+    <h1>Tests</h1>
+    <mat-table [dataSource]="testsTable" class="mat-elevation-z8">
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> Número </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+        <mat-cell *matCellDef="let element"><a href="/dashboard/test/{{element.id}}">{{element.name}}</a></mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="qualifications">
+        <mat-header-cell *matHeaderCellDef> Calificaciones </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.qualifications}}</mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="qualificationMedia">
+        <mat-header-cell *matHeaderCellDef> Calificación media </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.qualificationMedia}} <i class="bx bxs-star"></i></mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="qualificationUser">
+        <mat-header-cell *matHeaderCellDef> Tu calificación </mat-header-cell>
+        <mat-cell *matCellDef="let element"> 
+          <ng-container *ngIf="element.qualificationUser=== null">
+            Sin realizar
+          </ng-container>
+          <ng-container *ngIf="element.qualificationUser !== null">{{ element.qualificationUser }} <i class="bx bxs-star"></i></ng-container>
+        </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="qualificationUserDate">
+        <mat-header-cell *matHeaderCellDef> Fecha realización </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.qualificationUserDate}} </mat-cell>
+      </ng-container>
+    
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>

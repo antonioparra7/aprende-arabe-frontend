@@ -17,8 +17,8 @@ export class TestService {
     );
   }
 
-  getTestsByLessonId(id: number): Observable<Test[]> {
-    return this.http.get<Test[]>(`${this.url}/lessonId/${id}`).pipe(
+  getTestsByLevelId(id: number): Observable<Test[]> {
+    return this.http.get<Test[]>(`${this.url}/levelId/${id}`).pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(() => error);
       })

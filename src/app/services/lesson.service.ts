@@ -17,6 +17,13 @@ export class LessonService {
     );
   }
 
+  getLessonsByThemeId(id: number): Observable<Lesson[]> {
+    return this.http.get<Lesson[]>(`${this.url}/themeId/${id}`).pipe(
+      catchError((error: HttpErrorResponse) => {
+        return throwError(() => error);
+      })
+    );
+  }
   getLessonById(id: number): Observable<Lesson> {
     return this.http.get<Lesson>(`${this.url}/${id}`).pipe(
       catchError((error: HttpErrorResponse) => {

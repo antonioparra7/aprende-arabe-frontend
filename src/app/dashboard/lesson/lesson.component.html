@@ -1,1 +1,22 @@
-<p>lesson works!</p>
+<div class="container mt-4 text-center">
+    <div *ngIf="!contentsReady">Cargando</div>
+    <div class="lesson" *ngIf="contentsReady">
+        <h1> Lección "{{ lesson.name }}"</h1>
+
+        <img class="mt-3" *ngIf="contents[index].image" [src]="getImageSrc(contents[index].image)" />
+
+        <div class="words mt-4">
+            <h2 class="word-spain">{{ contents[index].word }}</h2>
+            <i class="bx bxs-right-arrow-alt"></i>
+            <h2 class="word-arabic">{{ contents[index].wordTranslate }}</h2>
+        </div>
+
+        <div class="buttons mt-4">
+            <button class="button-last" mat-raised-button color="primary" (click)="lastContent()" [disabled]="index === 0">Anterior</button>
+            <button class="button-next" mat-raised-button color="primary" *ngIf="index !== contents.length - 1"
+                (click)="nextContent()">Siguiente</button>
+            <button class="button-next" mat-raised-button color="primary" *ngIf="index === contents.length - 1"
+                (click)="finish()">Finalizar</button>
+        </div>
+    </div>
+</div>

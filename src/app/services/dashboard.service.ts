@@ -14,7 +14,6 @@ export class DashboardService {
 
   getData():Observable<User>{
     const token = localStorage.getItem('token');
-    console.log(token);
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });

@@ -1,0 +1,23 @@
+.container {
+  display: grid;
+  place-items: center;
+}
+
+.words, .buttons {
+    text-align: center;
+}
+.words .word-spain, .buttons .button-last {
+    float: left;
+}
+.words .word-arabic, .buttons .button-next {
+    float: right;
+}
+
+.bx {
+  font-size: 2em;
+}
+
+img {
+  width: 300px;
+  height: 300px;
+}

@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {MatTableModule} from '@angular/material/table';
-import { LessonsComponent } from './lessons.component';
+import { TestsComponent } from './tests.component';
+import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 
 
+
 @NgModule({
-  declarations: [LessonsComponent],
+  declarations: [TestsComponent],
   imports: [
     CommonModule, MatTableModule, MatButtonModule
   ],
-  exports: [LessonsComponent]
+  exports: [TestsComponent]
 })
-export class LessonsModule { }
+export class TestsModule { }

@@ -30,17 +30,21 @@ import { StatisticsComponent } from './dashboard/statistics/statistics.component
 import { LevelsComponent } from './dashboard/levels/levels.component';
 import { ThemesComponent } from './dashboard/themes/themes.component';
 import { LessonsComponent } from './dashboard/lessons/lessons.component';
-import { ContactsComponent } from './dashboard/contacts/contacts.component';
 import { TutorialsComponent } from './dashboard/tutorials/tutorials.component';
 import { TestsComponent } from './dashboard/tests/tests.component';
 import { TranslatorComponent } from './dashboard/translator/translator.component';
 import { LevelsModule } from './dashboard/levels/levels.module';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ThemesModule } from './dashboard/themes/themes.module';
 import { LessonsModule } from './dashboard/lessons/lessons.module';
 import { LessonComponent } from './dashboard/lesson/lesson.component';
 import { TestComponent } from './dashboard/test/test.component';
 import { TutorialComponent } from './dashboard/tutorial/tutorial.component';
+import { LessonModule } from './dashboard/lesson/lesson.module';
+import { RegisterModule } from './register/register.module';
+import { LoginModule } from './login/login.module';
+import { RestorePasswordModule } from './restore-password/restore-password.module';
+import { StatisticsModule } from './dashboard/statistics/statistics.module';
+import { TestsModule } from './dashboard/tests/tests.module';
 
 const routes: Routes = [
   {path:'',redirectTo:'/home',pathMatch:'full'},
@@ -57,12 +61,11 @@ const routes: Routes = [
       {path:'themes',component:ThemesComponent},
       {path:'lessons/:themeId',component:LessonsComponent},
       {path:'lesson/:lessonId',component:LessonComponent},
-      {path:'tests/:lessonId',component:TestsComponent},
+      {path:'tests',component:TestsComponent},
       {path:'test/:testId',component:TestComponent},
       {path:'translator',component:TranslatorComponent},
       {path:'tutorials',component:TutorialsComponent},
       {path:'tutorials/:tutorialId',component:TutorialComponent},
-      {path:'contacts',component:ContactsComponent},
       {path:'settings',component:SettingsComponent}
   ]}
 ];
@@ -82,9 +85,15 @@ const routes: Routes = [
     TranslatorComponent
   ],
   imports: [
+    RegisterModule,
+    LoginModule,
+    RestorePasswordModule,
+    StatisticsModule,
     LevelsModule,
     ThemesModule,
     LessonsModule,
+    LessonModule,
+    TestsModule,
     BrowserModule,
     BrowserAnimationsModule,
     CommonModule,

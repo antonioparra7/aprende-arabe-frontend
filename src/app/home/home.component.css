@@ -1,10 +1,34 @@
-.home-content {
+section {
+    display: flex;
+    /*width: 600px;*/
     width: 100%;
-    height: 450px;
-    background-color: gray;
+    height: 430px;
 }
-.home-slider {
-    width: 100%;
-    height: 450px;
-    background-color: gray;
+
+section img {
+    width: 0px;
+    flex-grow: 1;
+    object-fit: cover;
+    opacity: .8;
+    transition: .5s ease;
+}
+
+section img:hover {
+    width: 300px;
+    opacity: 1;
+    filter: contrast(120%);
+}
+
+
+h2 {
+    font-family: Verdana;
+    font-weight: 700;
+    text-align: left;
+    text-decoration: underline;
+}
+
+p {
+    font-family: Verdana;
+    font-weight: 700;
+    margin: 0px 50px 20px 0px;
 }

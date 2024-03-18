@@ -17,6 +17,14 @@ export class ContentService {
     );
   }
 
+  getContentsByLessonId(id: number): Observable<Content[]> {
+    return this.http.get<Content[]>(`${this.url}/lessonId/${id}`).pipe(
+      catchError((error: HttpErrorResponse) => {
+        return throwError(() => error);
+      })
+    );
+  }
+
   getContentById(id: number): Observable<Content> {
     return this.http.get<Content>(`${this.url}/${id}`).pipe(
       catchError((error: HttpErrorResponse) => {
