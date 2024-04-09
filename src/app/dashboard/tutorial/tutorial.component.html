@@ -1,3 +1,14 @@
-<div class="container mt-4" *ngIf="tutorialIsReady">
-    {{ tutorial.link }}
+<div class="container mt-4 text-center">
+    <div *ngIf="!tutorialIsReady">Cargando</div>
+    <div class="tutorial" *ngIf="tutorialIsReady">
+        <h1>Tutorial: {{ tutorial.name }}</h1>
+
+        <h3>Descripción: {{ tutorial.description }}</h3>
+
+        <youtube-player
+            videoId={{tutorial.link}} 
+            suggestedQuality="highres" 
+            [height]="350" [width]="650">
+        </youtube-player>
+    </div>
 </div>

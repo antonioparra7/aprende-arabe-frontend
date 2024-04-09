@@ -63,10 +63,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "aprende-arabe-frontend:build:production"
+              "buildTarget": "aprende-arabe-frontend:build:production"
             },
             "development": {
-              "browserTarget": "aprende-arabe-frontend:build:development"
+              "buildTarget": "aprende-arabe-frontend:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -74,7 +74,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "aprende-arabe-frontend:build"
+            "buildTarget": "aprende-arabe-frontend:build"
           }
         },
         "test": {
