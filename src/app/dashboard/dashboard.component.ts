@@ -39,7 +39,8 @@ export class DashboardComponent implements OnInit {
         localStorage.setItem('user', JSON.stringify(this.user));
       }),
       catchError((error: HttpErrorResponse) => {
-        Swal.fire(`Error ${error.status}`, error.message, 'error');
+        this.authenticationService.setIsLogged(false);
+        this._router.navigate(['/home']);
         throw error;
       }),
       finalize(() => {

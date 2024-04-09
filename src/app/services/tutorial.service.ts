@@ -25,6 +25,14 @@ export class TutorialService {
     );
   }
 
+  getTutorialByLink(link: string): Observable<Tutorial> {
+    return this.http.get<Tutorial>(`${this.url}/link/${link}`).pipe(
+      catchError((error: HttpErrorResponse) => {
+        return throwError(() => error);
+      })
+    );
+  }
+
   createTutorial(name: string, description: string, link: string, destinedTo: string): Observable<string> {
     const body = {
       name: name,

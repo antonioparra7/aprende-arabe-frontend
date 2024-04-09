@@ -19,7 +19,6 @@ export class LevelsComponent implements OnInit {
   public user: User;
   public levelId: number;
 
-
   constructor(private dashboardService: DashboardService, private levelService: LevelService, private userService: UserService) { }
 
   ngOnInit(): void {

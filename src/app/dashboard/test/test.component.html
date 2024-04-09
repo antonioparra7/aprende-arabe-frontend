@@ -1,1 +1,46 @@
-<p>test works!</p>
+<div class="container" *ngIf="!testReady">
+    Cargando test
+</div>
+<div class="container" *ngIf="testReady && !start">
+    <div class="row mt-5">
+        <div class="col text-center">
+            <h1> Test {{ test.name }}</h1>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col text-center">
+            <img *ngIf="test.name" [src]="getImageSrc(imageRandom)" alt="{{ test.name }}" />
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col text-center">
+            <button mat-flat-button color="primary" (click)="startTest()">Comenzar</button>
+        </div>
+    </div>
+</div>
+<div class="container-test mt-4 text-center" *ngIf="testReady && start">
+    <div class="test">
+        <h1>Test {{ test.name }}</h1>
+
+        <img class="img-test mt-3" *ngIf="questions[index].image" [src]="getImageSrc(questions[index].image)" />
+
+        <div class="questions mt-4">
+            <label id="example-radio-group-label"> {{ questions[index].question }}</label>
+            <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+                [(ngModel)]="response">
+                <ng-container *ngFor="let question of questionsTest[index]; let i = index">
+                    <mat-radio-button class="example-radio-button" [value]="question">{{ question }}</mat-radio-button>
+                </ng-container>
+            </mat-radio-group>
+        </div>
+
+        <div class="buttons mt-4">
+            <button class="button-last" mat-raised-button color="primary" (click)="lastQuestion()"
+                [disabled]="true">Anterior</button>
+            <button class="button-next" mat-raised-button color="primary" *ngIf="index !== questions.length - 1"
+                (click)="nextQuestion()" [disabled]="response.length===0">Siguiente</button>
+            <button class="button-next" mat-raised-button color="primary" *ngIf="index === questions.length - 1"
+                (click)="finishTest()" [disabled]="response.length===0">Finalizar</button>
+        </div>
+    </div>
+</div>

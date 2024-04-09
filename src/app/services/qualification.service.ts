@@ -1,6 +1,6 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, throwError } from 'rxjs';
+import { Observable, catchError, map, throwError } from 'rxjs';
 import { Qualification } from '../entities/qualification';
 
 @Injectable({
@@ -50,14 +50,16 @@ export class QualificationService {
     );
   }
 
-  createQualification(score: number, testId: number, userId: number): Observable<string> {
-    const body = {
-      score: score,
-      testId: testId,
-      userId: userId
-    };
+  createQualification(request:any): Observable<any> {
+    return this.http.post(this.url, request).pipe(
+      catchError((error: HttpErrorResponse) => {
+        return throwError(() => error);
+      })
+    );
+  }
 
-    return this.http.post<string>(this.url, body).pipe(
+  updateQualification(request:any): Observable<any> {
+    return this.http.put(this.url, request).pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(() => error);
       })

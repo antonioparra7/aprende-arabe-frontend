@@ -91,7 +91,6 @@ export class TestsComponent {
                     qualificationUser: (qualificationUser != null) ? qualificationUser.score : null,
                     qualificationUserDate: (qualificationUser != null) ? this.datePipe.transform(qualificationUser.createAt, 'dd-MM-yyyy') : "None"
                   };
-                  console.log(testToAdd);
                   this.testsTable.push(testToAdd);
                   processedTestsCount++;
                   if (processedTestsCount === this.tests.length) {

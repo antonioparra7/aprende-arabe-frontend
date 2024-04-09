@@ -1,1 +1,22 @@
-<p>tutorials works!</p>
+<div class="container mt-4" *ngIf="tutorialsTableReady">
+    <h1>Tutoriales de AprendeArabe</h1>
+    <mat-table [dataSource]="tutorialsTable" class="mat-elevation-z8">
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+          <mat-cell *matCellDef="let element"><a href="/dashboard/tutorials/{{element.link}}">{{element.name}}</a></mat-cell>
+        </ng-container>
+    
+        <ng-container matColumnDef="description">
+          <mat-header-cell *matHeaderCellDef> Descripción </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.description}}</mat-cell>
+        </ng-container>
+    
+        <ng-container matColumnDef="tutorialDate">
+          <mat-header-cell *matHeaderCellDef> Fecha </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.tutorialDate}} </mat-cell>
+        </ng-container>
+      
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+</div>

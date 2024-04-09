@@ -1,0 +1,33 @@
+img {
+    width: 300px;
+    height: 300px;
+  }
+
+  .words, .buttons {
+    text-align: center;
+}
+.words .word-spain, .buttons .button-last {
+    float: left;
+}
+.words .word-arabic, .buttons .button-next {
+    float: right;
+}
+.example-radio-group {
+  display: flex;
+  flex-direction: column;
+  margin: 0px 0;
+  align-items: flex-start;
+}
+
+.container-test {
+  display: grid;
+  place-items: center;
+}
+
+.img-test {
+    width: 200px;
+    height: 200px;
+}
+.example-radio-button {
+  margin: 0px;
+}

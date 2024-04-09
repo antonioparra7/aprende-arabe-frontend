@@ -1,1 +1,53 @@
-<p>translator works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col text-center">
+            <h1>Traductor AprendeArabe</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-5 mt-4 text-center">
+            <p>IDIOMA ORIGINAL</p>
+            <mat-form-field class="select">
+                <mat-label>{{ leftWord }}</mat-label>
+                <mat-select disabled [value]="leftWord">
+                  <mat-option>{{ leftWord }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+        </div>
+        <div class="col-sm-12 col-md-2 mt-4 text-center">
+            <p>INTERCAMBIAR</p>
+            <i class="bx bxs-directions" (click)="change()"></i>
+        </div>
+        <div class="col-sm-12 col-md-5 mt-4 text-center">
+            <p>IDIOMA A TRADUCIR</p>
+            <mat-form-field class="select">
+                <mat-label>{{ rightWord }}</mat-label>
+                <mat-select disabled [value]="rightWord">
+                  <mat-option>{{ rightWord }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-5 mt-4 text-center">
+            <mat-form-field class="textarea">
+                <mat-label>Texto a traducir</mat-label>
+                <textarea matInput placeholder="Ex. Me puede poner un refresco?" [(ngModel)]="leftText" style="resize: none;"></textarea>
+              </mat-form-field>
+        </div>
+        <div class="col-sm-12 col-md-2 mt-4 text-center">
+            
+        </div>
+        <div class="col-sm-12 col-md-5 mt-4 text-center">
+            <mat-form-field class="textarea">
+                <mat-label>Texto traducido</mat-label>
+                <textarea matInput [(ngModel)]="rightText" style="resize: none;"></textarea>
+              </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col mt-4 text-center">
+            <button mat-flat-button color="primary" (click)="translate()">Traducir</button>
+        </div>
+    </div>
+</div>

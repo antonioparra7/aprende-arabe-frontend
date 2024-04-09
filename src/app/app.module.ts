@@ -45,6 +45,10 @@ import { LoginModule } from './login/login.module';
 import { RestorePasswordModule } from './restore-password/restore-password.module';
 import { StatisticsModule } from './dashboard/statistics/statistics.module';
 import { TestsModule } from './dashboard/tests/tests.module';
+import { TranslatorModule } from './dashboard/translator/translator.module';
+import { TestModule } from './dashboard/test/test.module';
+import { TutorialsModule } from './dashboard/tutorials/tutorials.module';
+import { TutorialModule } from './dashboard/tutorial/tutorial.module';
 
 const routes: Routes = [
   {path:'',redirectTo:'/home',pathMatch:'full'},
@@ -65,7 +69,7 @@ const routes: Routes = [
       {path:'test/:testId',component:TestComponent},
       {path:'translator',component:TranslatorComponent},
       {path:'tutorials',component:TutorialsComponent},
-      {path:'tutorials/:tutorialId',component:TutorialComponent},
+      {path:'tutorials/:link',component:TutorialComponent},
       {path:'settings',component:SettingsComponent}
   ]}
 ];
@@ -81,8 +85,7 @@ const routes: Routes = [
     RestorePasswordComponent,
     AdminPanelComponent,
     DashboardComponent,
-    SettingsComponent,
-    TranslatorComponent
+    SettingsComponent
   ],
   imports: [
     RegisterModule,
@@ -94,6 +97,10 @@ const routes: Routes = [
     LessonsModule,
     LessonModule,
     TestsModule,
+    TestModule,
+    TranslatorModule,
+    TutorialsModule,
+    TutorialModule,
     BrowserModule,
     BrowserAnimationsModule,
     CommonModule,

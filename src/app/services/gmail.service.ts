@@ -1,18 +1,15 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, throwError } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TranslatorService {
-  private url:string = "http://localhost:8080/api/v1/translator";
+export class GmailService {
+  private url:string = "http://localhost:8080/api/v1/gmail";
   constructor(private http: HttpClient) { }
-  translateEsToAr(text:string){
-    const body = {
-      text: text
-    }
-    return this.http.post<string>(`${this.url}/es-ar`, body).pipe(
+  sendEmail(request:any): Observable<any> {
+    return this.http.post(`${this.url}/sendEmail`, request).pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(() => error);
       })

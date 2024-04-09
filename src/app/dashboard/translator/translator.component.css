@@ -1,0 +1,16 @@
+.select, .textarea {
+    width: 100%;
+}
+
+p {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.container {
+    padding: 3% 10%;
+}
+.bx {
+    color: black;
+    font-size: 2.5rem;
+}

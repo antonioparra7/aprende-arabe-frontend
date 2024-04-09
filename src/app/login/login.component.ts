@@ -46,7 +46,7 @@ export class LoginComponent {
               this._router.navigate(['/dashboard']);
             }),
             catchError((error: HttpErrorResponse) => {
-              Swal.fire(`Error ${error.status}`, error.message, 'error');
+              Swal.fire(`Error ${error.status}`, error.error, 'error');
               throw error;
             })
           ).subscribe();

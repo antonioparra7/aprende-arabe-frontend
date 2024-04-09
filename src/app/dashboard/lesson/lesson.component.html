@@ -1,7 +1,7 @@
 <div class="container mt-4 text-center">
     <div *ngIf="!contentsReady">Cargando</div>
     <div class="lesson" *ngIf="contentsReady">
-        <h1> Lección "{{ lesson.name }}"</h1>
+        <h1>Lección "{{ lesson.name }}"</h1>
 
         <img class="mt-3" *ngIf="contents[index].image" [src]="getImageSrc(contents[index].image)" />
 

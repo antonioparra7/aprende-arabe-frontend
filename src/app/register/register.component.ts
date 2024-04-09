@@ -27,7 +27,7 @@ export class RegisterComponent {
   constructor(private countryService:CountryService, private userService:UserService,
               private authenticationService:AuthenticationService,
               private _router:Router, private fb:FormBuilder, 
-              private datePipe: DatePipe, private http:HttpClient){
+              private datePipe: DatePipe){
     this.form = this.fb.group(
       {
         firstName: ['', [Validators.required,Validators.minLength(3),Validators.maxLength(25)]],
