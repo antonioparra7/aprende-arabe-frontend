@@ -10,6 +10,6 @@ El siguiente proyecto ha sido desarrollado utilizando las siguientes versiones:
 
 Para la ejecución del proyecto correctamente es necesario realizar las siguientes acciones:
 - Clonar el proyecto del repositorio
-- Ejecutar el comando "ng serve -o" en el directorio del proyecto 
+- Ejecutar los comandos "npm install" y "ng serve -o" en el directorio del proyecto 
 
 Autor: Antonio Parra Diaz
