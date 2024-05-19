@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 import { AuthenticationService } from '../services/authentication.service';
 import { UserService } from '../services/user.service';
 import Swal from 'sweetalert2';
+import { MatRadioModule } from '@angular/material/radio';
 
 @Component({
   selector: 'app-register',
@@ -38,6 +39,7 @@ export class RegisterComponent {
         username: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(15)]],
         password: ['', Validators.required],
         passwordRepeat: ['', Validators.required],
+        gender: ['', Validators.required],
         isTeacher: [false],
         countryId: ['', Validators.required]
       },
@@ -62,8 +64,10 @@ export class RegisterComponent {
       username:this.form.get('username')?.value,
       password:this.form.get('password')?.value,
       countryId:this.form.get('countryId')?.value,
+      gender: this.form.get('gender')?.value,
       isTeacher:this.form.get('isTeacher')?.value
     };
+    console.log(request);
     this.checkUsernameExists(this.form.get('username')?.value);
     this.checkEmailExists(this.form.get('email')?.value);
     if(this.isValid){
@@ -143,5 +147,12 @@ export class RegisterComponent {
   passwordRepeatError(){
     return this.form.get('passwordRepeat')?.hasError('required')?'Contraseña no puede ser vacío' : 
           this.form.get('passwordRepeat')?.hasError('notMatching')?'Las contraseñas deben coincidir' : '';
+  }
+  genderError(){
+    return this.form.get('gender')?.hasError('required')?'Selecciona un género' : '';
+  }
+
+  getImageSrc(imageData: any): string {
+    return `data:image/png;base64,${imageData}`;
   }
 }

@@ -165,7 +165,6 @@ export class TestComponent {
       })
     ).subscribe(
       response => {
-        console.log(response);
         const qualification:Qualification = response; 
         if (qualification.score >= 5.0) {
           Swal.fire({

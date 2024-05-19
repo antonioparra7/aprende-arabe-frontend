@@ -91,7 +91,8 @@ export class LessonComponent {
     this.index += 1;
   }
   finish() {
-    console.log("Lección terminada")
+    console.log(this._router.url);
+    this._router.navigate([`/dashboard/themes`]);
   }
 
 }

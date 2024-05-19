@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, throwError } from 'rxjs';
+import { Observable, catchError, map, throwError } from 'rxjs';
 import { Rating } from '../entities/rating';
 
 @Injectable({
@@ -45,14 +45,12 @@ export class RatingService {
       })
     );
   }
-  createRating(score: number, lessonId: number, userId: number): Observable<string> {
-    const body = {
-      score: score,
-      lessonId: lessonId,
-      userId: userId
-    };
-
-    return this.http.post<string>(this.url, body).pipe(
+  createRating(request:any): Observable<any> {
+    return this.http.post<string>(this.url, request,{ responseType: 'text' as 'json'}).pipe(
+      map(response=>{
+          return {message: response};
+        }
+      ),
       catchError((error: HttpErrorResponse) => {
         return throwError(() => error);
       })

@@ -35,7 +35,7 @@
                     <mat-select name="countryId" formControlName="countryId">
                         <mat-option *ngFor="let country of countries" [value]="country.id"
                             style="display: flex; align-items: center;">
-                            <img [src]="country.flag" style="width: 30px; height: auto; margin-right: 10px;">
+                            <img [src]="getImageSrc(country.flag)" style="width: 30px; height: auto; margin-right: 10px;">
                             <span>{{ country.name }}</span>
                         </mat-option>
                     </mat-select>
@@ -94,6 +94,18 @@
                 </mat-form-field>
             </div>
             <div class="col-md-6">
+                <div class="example-full-width">
+                    <label class="mat-form-field-label" style="display: block; text-align: center;">Género</label>
+                    <mat-radio-group aria-label="Género" formControlName="gender" style="display: block; text-align: center;">
+                        <mat-radio-button value="male">Masculino</mat-radio-button>
+                        <mat-radio-button value="female">Femenino</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+            </div>
+
+        </div>
+        <div class="row mb-1">
+            <div class="col-md-12 d-flex justify-content-center">
                 <mat-checkbox class="d-flex justify-content-center" name="isTeacher" formControlName="isTeacher">Soy profesor!</mat-checkbox>
             </div>
         </div>

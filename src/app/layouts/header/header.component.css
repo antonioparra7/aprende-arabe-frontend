@@ -8,13 +8,13 @@ mat-toolbar {
     height: 56px;
     display: flex;
     align-items: center;
-    color: #1976D2;
+    color: white;
     z-index: 500;
     padding-bottom: 20px;
     box-sizing: content-box;
 }
 .logo .logo-name span{
-    color: #363949;
+    color: black;
 }
 .logo .logo-name {
     font-size: 20px;

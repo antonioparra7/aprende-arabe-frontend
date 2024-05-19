@@ -2,7 +2,7 @@ import { DatePipe } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { catchError, forkJoin, switchMap } from 'rxjs';
+import { catchError, forkJoin, map, switchMap } from 'rxjs';
 import { Lesson } from 'src/app/entities/lesson';
 import { Rating } from 'src/app/entities/rating';
 import { Theme } from 'src/app/entities/theme';
@@ -132,5 +132,54 @@ export class LessonsComponent {
       media = sum / len;
     }
     return media;
+  }
+  ratingLesson(lessonId:number){
+    Swal.fire({
+      title: 'Valoración de la lección',
+      text: '¿Qué valoración le das a esta lección?',
+      input: 'range',
+      inputAttributes: {
+        min: '0',
+        max: '5',
+        step: '1'
+      },
+      inputValue: '0',
+      showCancelButton: true,
+      cancelButtonText: 'Cancelar',
+      confirmButtonText: 'Valorar lección',
+      inputValidator: (value) => {
+        if (!value) {
+          return 'Debes seleccionar una puntuación';
+        }
+        return null;
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const request = {
+          score: parseInt(result.value, 10),
+          lessonId: lessonId,
+          userId: this.user.id
+        }
+        this.ratingService.createRating(request).pipe(
+          map(response => {
+            Swal.fire({
+              icon: 'success',
+              title: '¡Gracias por su valoración de la lección!',
+              text: `Su valoración de la lección ha sido añadida correctamente.`,
+              confirmButtonText: 'OK',
+            }).then((result) => {
+              if (result.isConfirmed) {
+                this._router.navigate(['/dashboard/statistics']);
+              }
+            });
+          }),
+          catchError((error: HttpErrorResponse) => {
+            Swal.fire(`Error ${error.status}`, error.message, 'error');
+            this._router.navigate(['/dashboard/statistics']);
+            throw error;
+          })
+        ).subscribe();
+      }
+    });
   }
 }

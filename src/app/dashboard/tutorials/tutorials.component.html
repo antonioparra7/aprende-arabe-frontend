@@ -1,5 +1,7 @@
 <div class="container mt-4" *ngIf="tutorialsTableReady">
-    <h1>Tutoriales de AprendeArabe</h1>
+    <div class="col text-center">
+      <h1>Tutoriales disponibles en AprendeArabe</h1>
+    </div>
     <mat-table [dataSource]="tutorialsTable" class="mat-elevation-z8">
         <ng-container matColumnDef="name">
           <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>

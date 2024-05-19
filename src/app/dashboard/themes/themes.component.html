@@ -1,8 +1,14 @@
 <div class="container">
-    <div class="row">
-      <div *ngFor="let theme of themes" class="level text-center col-md-4 col-sm-6 col-xs-12">
-        <h1>{{ theme.name }}</h1>
-        <img *ngIf="theme.image" [src]="getImageSrc(theme.image)" alt="{{ theme.name }}" (click)="lessonsOfTheme(theme.id)"/>
-      </div>
+  <div class="row">
+    <div class="col text-center">
+      <h1>Temáticas disponibles en AprendeArabe</h1>
     </div>
   </div>
+  <div class="row">
+    <div *ngFor="let theme of themes" class="level text-center col-md-4 col-sm-6 col-xs-12">
+      <h1>{{ theme.name }}</h1>
+      <img *ngIf="theme.image" [src]="getImageSrc(theme.image)" alt="{{ theme.name }}"
+        (click)="lessonsOfTheme(theme.id)" />
+    </div>
+  </div>
+</div>

@@ -25,7 +25,7 @@
       <mat-header-cell *matHeaderCellDef> Tu valoración </mat-header-cell>
       <mat-cell *matCellDef="let element"> 
         <ng-container *ngIf="element.ratingUser === null">
-          <button mat-raised-button color="primary">Valorar</button>
+          <button mat-raised-button color="primary" (click)="ratingLesson(element.id)">Valorar</button>
         </ng-container>
         <ng-container *ngIf="element.ratingUser !== null">{{ element.ratingUser }} <i class="bx bxs-star"></i></ng-container>
       </mat-cell>

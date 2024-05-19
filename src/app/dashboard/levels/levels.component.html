@@ -1,6 +1,11 @@
 <div class="container">
   <div class="row">
-    <div *ngFor="let level of levels" class="level col-md-4 col-sm-6 col-xs-12">
+    <div class="col text-center">
+      <h1>Niveles disponibles en AprendeArabe</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div *ngFor="let level of levels" class="level col-md-4 col-sm-6 col-xs-12 mb-4">
       <h1>{{ level.name }}</h1>
       <img *ngIf="level.image" [src]="getImageSrc(level.image)" alt="{{ level.name }}" />
       <button mat-flat-button color="primary" [disabled]="level.id===levelId" (click)="selectLevel(level)">Seleccionar</button>

@@ -33,7 +33,7 @@ export class UserService {
   }
 
   getLevelId(id: number):Observable<number>{
-    return this.http.get<number>(`${this.url}/${id}`).pipe(
+    return this.http.get<number>(`${this.url}/levelId/${id}`).pipe(
       catchError((error:HttpErrorResponse) => {
         return throwError(()=>error);
       })
@@ -42,6 +42,17 @@ export class UserService {
 
   updateLevelUser(request: any, userId: number): Observable<User> {
     return this.http.put<User>(`${this.url}/${userId}`, request).pipe(
+      catchError((error:HttpErrorResponse) => {
+        return throwError(()=>error);
+      })
+    );
+  }
+
+  deleteUser(id: number) {
+    return this.http.delete(`${this.url}/${id}`,{ responseType: 'text' }).pipe(
+      map(response=>{
+        return {message: response};
+      }),
       catchError((error:HttpErrorResponse) => {
         return throwError(()=>error);
       })

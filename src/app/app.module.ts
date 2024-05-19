@@ -23,7 +23,6 @@ import { LoginComponent } from './login/login.component';
 import { RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './register/register.component';
 import { RestorePasswordComponent } from './restore-password/restore-password.component';
-import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SettingsComponent } from './dashboard/settings/settings.component';
 import { StatisticsComponent } from './dashboard/statistics/statistics.component';
@@ -49,6 +48,8 @@ import { TranslatorModule } from './dashboard/translator/translator.module';
 import { TestModule } from './dashboard/test/test.module';
 import { TutorialsModule } from './dashboard/tutorials/tutorials.module';
 import { TutorialModule } from './dashboard/tutorial/tutorial.module';
+import { MatRadioModule } from '@angular/material/radio';
+import { SettingsModule } from './dashboard/settings/settings.module';
 
 const routes: Routes = [
   {path:'',redirectTo:'/home',pathMatch:'full'},
@@ -56,7 +57,6 @@ const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'register',component:RegisterComponent},
   {path:'restore-password',component:RestorePasswordComponent},
-  {path:'admin',component:AdminPanelComponent},
   {path:'dashboard',component:DashboardComponent,
     children: [
       {path:'',component:StatisticsComponent},
@@ -83,9 +83,7 @@ const routes: Routes = [
     LoginComponent,
     RegisterComponent,
     RestorePasswordComponent,
-    AdminPanelComponent,
-    DashboardComponent,
-    SettingsComponent
+    DashboardComponent
   ],
   imports: [
     RegisterModule,
@@ -101,6 +99,7 @@ const routes: Routes = [
     TranslatorModule,
     TutorialsModule,
     TutorialModule,
+    SettingsModule,
     BrowserModule,
     BrowserAnimationsModule,
     CommonModule,
@@ -118,7 +117,8 @@ const routes: Routes = [
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatRadioModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

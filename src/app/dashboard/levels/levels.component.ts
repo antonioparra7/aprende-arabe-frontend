@@ -50,7 +50,7 @@ export class LevelsComponent implements OnInit {
   }
 
   selectLevel(level: Level) {
-    const request = {'levelId': level.id};
+    const request = { 'levelId': level.id };
     this.userService.updateLevelUser(request, this.user?.id).pipe(
       tap((user: User) => {
         this.levelId = level.id;
